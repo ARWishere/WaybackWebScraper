@@ -10,7 +10,7 @@ import os
 import asyncio
 import nest_asyncio
 import aiohttp
-# use: ua = user_agent(browser="chrome", use_cache=False) # now add this to headers
+# use: ua = user_agent(browser="chrome", use_cache=False)
 
 session = requests.Session()
 """
@@ -122,19 +122,6 @@ def sanitize_filename(url):
     return re.sub(r'[<>:"/\\|?*]', '_', url)
 
 
-
-"""
-uses the selenium webdriver to navigate to different product categories 
-from the shop dropdown menu 
-Parameters:
-    url (str): page url
-
-Returns:
-    responses (list): a list of responses from the shop dropdown menu 
-
-"""
-
-# filter links so theyre unique and dont contain duplicates
 def filter_links(links, base_url, url):
     # Step 1: remove non-absolute urls and irrelevant ones
     normalized_links = [link for link in links if (base_url in link and "web.archive.org" in link)]
@@ -205,13 +192,13 @@ def scan_page(url, headers, non_wb_url, keywords):
     return matching_links
 
 """
-uses given page urls to get product data using beautiful soup
+uses given page urls to get item data using beautiful soup
 
 Parameters:
-    pages (2d list): list of shop page urls, organized by wayback urls collected
+    pages (2d list): list of page urls from the home website
 
 Returns:
-    products (2d list): a list of helpful product information
+    products (2d list): a list of product information
 
 """
 def scrape_info(parent_element, class_names): # class_names can either be 1d or 2d list

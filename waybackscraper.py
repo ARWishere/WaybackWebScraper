@@ -2,9 +2,11 @@ import wayback_generator
 import scrape_async as scrape
 
 def wb_scraper(url,start,end,interval, keywords):
+    # gather wayback snapshots using the wayback api
     snap_items = []
     snapshots = wayback_generator.collect_urls(url, start, end, interval)
 
+    # continue the setup process
     print("Now using your browser, right click and inspect the page on any item on the page")
     print("Move around a little, once all components of an item are highlighted (ie the name, image, and price) in a square")
     print("Copy and paste the class name (should be like class=name) of the object you are highlighting here from the inspect window")
@@ -28,10 +30,13 @@ def wb_scraper(url,start,end,interval, keywords):
     class_names = class_names + ", " + input("names: ")
     class_names = class_names.split(',')
     class_names = [i.strip() for i in class_names] # remove trailing and leading white spaces
-    #class_names = ["product-variation-name", "product-master-name", "value"]
-    #parent_tile_names = ["product", "product-tile", "product.grid-tile"]
+
+    # examples of input post formatting if needed:
+    #class_names = ["product-variation-name", "product-master-name", "value"] # example classes i scraped
+    #parent_tile_names = ["product", "product-tile", "product.grid-tile"] # example parent tiles i used
     #keywords = ["new-arrivals", "drinkware", "coolers", "bags", "cargo", "outdoor-living", "apparel",
-    #            "chairs", "gear", "accessories", "more-gear", "dogs"]  # after apparel, older ones follow
+    #            "chairs", "gear", "accessories", "more-gear", "dogs"]  # example keywords i used
+
     print("::::Now Scraping::::")
 
     for snap in snapshots:
@@ -52,7 +57,7 @@ def wb_scraper(url,start,end,interval, keywords):
     return snap_items
 
 
-# format a list of words so that they can be compatable with links, ie replace ' ' with '-'
+# format a list of words so that they can be compatible with links, ie replace ' ' with '-'
 def format_keywords(keywords):
     return [keyword.replace(' ', '-') for keyword in keywords]
 
