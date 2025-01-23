@@ -14,4 +14,4 @@ This Python project enables you to scrape a website and its historical versions 
 - Researching website evolution over time.
 - Archiving content for analysis or preservation.
 - Investigating historical changes in web pages.
-- I personally used this to scrape product information from 
+- I personally used this to scrape product information from a few brands to track their items over time
